@@ -6,6 +6,7 @@ import com.ti.task_manager.entities.DepartmentExample;
 import com.ti.task_manager.mapper.DepartmentMapper;
 import com.ti.task_manager.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    @Cacheable("dept")
     public ArrayList<DeptTreeNode> getTreeDept() {
         List<Department> departments = mapper.selectByExample(new DepartmentExample());
         ArrayList<DeptTreeNode> deptTreeNodes = toFormatTreeDept(departments);

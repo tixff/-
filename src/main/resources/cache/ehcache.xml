@@ -1,0 +1,4 @@
+<ehcache>
+    <cache name="manager" maxEntriesLocalHeap="200" timeToLiveSeconds="600"/>
+    <cache name="dept" maxEntriesLocalHeap="200" timeToLiveSeconds="600"/>
+</ehcache>

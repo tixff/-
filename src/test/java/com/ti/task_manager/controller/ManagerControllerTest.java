@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 public class ManagerControllerTest extends AbstractControllerTest {
 
@@ -20,7 +22,7 @@ public class ManagerControllerTest extends AbstractControllerTest {
     private WebApplicationContext webApplicationContext;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         //获取mockmvc对象实例
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
@@ -30,8 +32,10 @@ public class ManagerControllerTest extends AbstractControllerTest {
     @Transactional
     @Rollback
     public void addManager() throws Exception {
-        mockMvc.perform(get("/add")
-                .param("id", "1101").param("name","小马"));
-        mockMvc.perform(get("/find").param("id", "1"));
+        mockMvc.perform(post("/manager/add")
+                .param("id", "1101").param("name", "小马"));
+        mockMvc.perform(get("/manager/find")
+                .param("id", "1101"))
+                .andExpect(jsonPath("$.data.manager.name").value("小马"));
     }
 }
