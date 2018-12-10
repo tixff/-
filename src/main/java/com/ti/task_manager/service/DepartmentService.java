@@ -13,4 +13,6 @@ public interface DepartmentService {
     ArrayList<Department> findSonDepartmentById(Integer id);
 
     ArrayList<DeptTreeNode> getTreeDept();
+
+    String getTreeDeptStr();
 }

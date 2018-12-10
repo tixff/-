@@ -17,7 +17,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class UrlSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .formLogin().and()
                 .authorizeRequests()
-                .antMatchers("/").authenticated()
+                .antMatchers("/**").authenticated()
                 .anyRequest().permitAll();
     }
 
@@ -46,8 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(new PasswordEncoder() {
                     @Override
                     public String encode(CharSequence charSequence) {
-                        String s = DigestUtils.md5DigestAsHex(charSequence.toString().getBytes());
-                        return s;
+                        return charSequence.toString();
                     }
 
                     @Override

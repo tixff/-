@@ -5,8 +5,8 @@ import com.ti.task_manager.entities.Department;
 import com.ti.task_manager.service.DepartmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,9 +33,12 @@ public class DepartmentController {
     }
 
     @GetMapping("all")
+    @Secured("ROLE_USER")
     @ApiOperation(value = "树形部门数据",notes = "树形部门数据")
     public ArrayList<DeptTreeNode> getTreeDeptData(){
         ArrayList<DeptTreeNode> treeDept = service.getTreeDept();
+        String treeDeptStr = service.getTreeDeptStr();
+        System.out.println(treeDeptStr);
         return treeDept;
     }
 }

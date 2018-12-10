@@ -1,5 +1,6 @@
 package com.ti.task_manager.service.impl;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.ti.task_manager.domain.DeptTreeNode;
 import com.ti.task_manager.entities.Department;
 import com.ti.task_manager.entities.DepartmentExample;
@@ -36,6 +37,13 @@ public class DepartmentServiceImpl implements DepartmentService {
         List<Department> departments = mapper.selectByExample(new DepartmentExample());
         ArrayList<DeptTreeNode> deptTreeNodes = toFormatTreeDept(departments);
         return deptTreeNodes;
+    }
+
+    @Override
+    public String getTreeDeptStr() {
+        ArrayList<DeptTreeNode> treeDept = getTreeDept();
+        String json = JSONUtils.toJSONString(treeDept.get(0).getText());
+        return json;
     }
 
     private ArrayList<DeptTreeNode> toFormatTreeDept(List<Department> list) {

@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: unittest
   messages:
       encoding: UTF-8
   http:

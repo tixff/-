@@ -2,6 +2,7 @@ package com.ti.task_manager.domain;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  */
 
 @Data
-public class DeptTreeNode {
+public class DeptTreeNode implements Serializable {
     private String text;
     private ArrayList<DeptTreeNode> children;
 }
