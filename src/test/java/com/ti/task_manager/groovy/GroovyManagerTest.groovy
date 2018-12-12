@@ -18,17 +18,16 @@ class GroovyManagerTest extends GroovyAbstractTest {
         println "hello groovy"
     }
 
-    def setup() {
-        manager.setId(81)
-        manager.setName("大力水手")
-        manager.setPassword("123456")
-    }
-
-
     @DatabaseSetup(value = "classpath:data/manager.xml", type = DatabaseOperation.CLEAN_INSERT)
     @Transactional
     @Rollback
     def 添加管理员测试() {
+        given:
+        manager.with {
+            id = 81
+            name = "大力水手"
+            password = "123456"
+        }
         when:
         managerMapper.insert(manager)
         then:

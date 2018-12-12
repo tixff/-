@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: unittest
+    active: dev
   messages:
       encoding: UTF-8
   http:
@@ -17,3 +17,7 @@ mybatis:
   type-aliases-package: com.ti.task_manager.mapper
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level: info
+
