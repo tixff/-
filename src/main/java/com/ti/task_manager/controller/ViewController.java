@@ -17,12 +17,12 @@ public class ViewController {
     }
 
     @GetMapping("/form.html")
-    public String form(){
+    public String form() {
         return "form";
     }
 
     @GetMapping("/table.html")
-    public String table(){
+    public String table() {
         return "table";
     }
 }
