@@ -6,8 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.util.DigestUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -33,12 +32,13 @@ public class UrlSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        /*auth.inMemoryAuthentication()
-                .passwordEncoder(new BCryptPasswordEncoder())
-                    .withUser("tom")
-                    .password(new BCryptPasswordEncoder()
-                            .encode("123")).roles("USER");*/
         auth
+                .inMemoryAuthentication()
+                .passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("tom")
+                .password(new BCryptPasswordEncoder()
+                        .encode("123")).roles("USER");
+        /*auth
                 .jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select name,password,true from user where name=?")
@@ -57,6 +57,6 @@ public class UrlSecurityConfig extends WebSecurityConfigurerAdapter {
                         }
                         return false;
                     }
-                });
+                });*/
     }
 }

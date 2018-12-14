@@ -17,6 +17,7 @@ class GroovyMailServiceTest extends GroovyAbstractTest {
         message.with {
             name = "杰瑞"
             text = "你好杰瑞，我是汤姆，我很想你"
+            destination="1376766128@qq.com"
         }
         mailService.sendMail(message)
 

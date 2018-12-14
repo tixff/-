@@ -38,7 +38,7 @@ public class MailServiceImpl implements MailService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "utf-8");
         helper.setFrom("447366453@qq.com");//510966974@qq.com
-        helper.setTo("447366453@qq.com");
+        helper.setTo(message.getDestination());
         helper.setSubject("通知");
         helper.setText(process, true);
         ClassPathResource resource = new ClassPathResource("static/mail.jpg");

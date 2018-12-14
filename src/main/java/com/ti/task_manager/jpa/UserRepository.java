@@ -1,6 +1,6 @@
 package com.ti.task_manager.jpa;
 
-import com.ti.task_manager.entities.Manager;
+import com.ti.task_manager.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date 2018/12/12
  */
 
-public interface ManagerRepository extends JpaRepository<Manager,Integer> {
+public interface UserRepository extends JpaRepository<User,Integer> {
 }

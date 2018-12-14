@@ -1,7 +1,7 @@
 package com.ti.task_manager.controller;
 
-import com.ti.task_manager.entities.Manager;
-import com.ti.task_manager.jpa.ManagerRepository;
+import com.ti.task_manager.entities.User;
+import com.ti.task_manager.jpa.UserRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ import java.util.Optional;
 public class JapController {
 
     @Autowired
-    private ManagerRepository repository;
+    private UserRepository repository;
 
-    @ApiOperation(value = "查找管理员",notes = "通过id查找")
+    @ApiOperation(value = "查找用户",notes = "通过id查找")
     @GetMapping("find")
-    public Manager findById(Integer id) {
-        Optional<Manager> manager = repository.findById(id);
-        return manager.get();
+    public User findById(Integer id) {
+        Optional<User> user = repository.findById(id);
+        return user.get();
     }
 }

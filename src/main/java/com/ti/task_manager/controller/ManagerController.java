@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,7 @@ public class ManagerController {
     @GetMapping("find")
     @ApiOperation(value = "查询管理员", notes = "通过id查询")
     @Cacheable("manager")
+    @Secured("ROLE_USER")
     public Result findById(
             Integer id) {
         Result result = new Result();
